@@ -13,7 +13,6 @@ An electronic shop inventory API developed with [Nest](https://github.com/nestjs
 
 ```bash
 $ npm install
-$ docker build -t denshi-store .
 ```
 
 ## Running the app
