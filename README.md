@@ -21,6 +21,42 @@ $ npm install
 $ docker compose up
 ```
 
+## Utilisation
+Once lauched, the API listens on localhost 5200.
+
+### Get all products:  
+  GET http://localhost:5200/products
+  
+### Get all categories:  
+  GET http://localhost:5200/products/categories
+  
+### Get one product:  
+  GET http://localhost:5200/products/:id
+  
+### Create a product:  
+  POST http://localhost:5200/products/  
+  
+  Example body for product creation:  
+  ```
+  {  
+    "name": "sample name",  
+    "category": "Empty",  
+    "sku": "abcdef",  
+    "price": 100,  
+    "quantity": 10  
+  }
+  ```
+  
+  **!Important: The field 'category' should either be : 'Empty', 'Smartphones', 'Computers', 'Tablets' or 'Games'.  
+  Any other value will set the field to 'Empty'**
+  
+### Update a product:  
+  PATCH http://localhost:5200/products/:id
+  
+### Delete a product:  
+  DELETE http://localhost:5200/products/:id
+
+
 ## Test
 
 ```bash
@@ -28,7 +64,6 @@ $ docker compose up
 $ npm run test
 
 ```
-
 
 ## Stay in touch
 
