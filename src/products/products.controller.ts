@@ -6,8 +6,6 @@ import {
   Patch,
   Param,
   Delete,
-  Res,
-  HttpStatus,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -18,53 +16,28 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  async create(@Body() createProductDto: CreateProductDto) {
-    try {
-      const newProduct = await this.productsService.create(createProductDto);
-      return newProduct;
-    } catch (error) {
-      return error.message;
-    }
+  create(@Body() createProductDto: CreateProductDto) {
+    return this.productsService.create(createProductDto);
   }
 
   @Get()
-  async findAll() {
-    try {
-      const products = await this.productsService.findAll();
-      return products;
-    } catch (error) {
-      return error.message;
-    }
+  findAll() {
+    return this.productsService.findAll();
   }
 
   @Get('categories')
-  async getAllCategories() {
-    try {
-      const categories = await this.productsService.getProductsCategories();
-      return categories;
-    } catch (error) {
-      return error.message;
-    }
+  getAllCategories() {
+    return this.productsService.getProductsCategories();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    try {
-      const product = await this.productsService.findOne(id);
-      return product;
-    } catch (error) {
-      return error.message;
-    }
+  findOne(@Param('id') id: string) {
+    return this.productsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    try {
-      const updatedProduct = this.productsService.update(id, updateProductDto);
-      return updatedProduct;
-    } catch (error) {
-      return error.message;
-    }
+    return this.productsService.update(id, updateProductDto);
   }
 
   @Delete(':id')

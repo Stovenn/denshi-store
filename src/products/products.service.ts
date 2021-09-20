@@ -14,11 +14,8 @@ export class ProductsService {
   async create(createProductDto: CreateProductDto) {
     const newProduct = this.productRepository.create(createProductDto);
     if (await this.productRepository.findOne({ sku: createProductDto.sku })) {
-      throw new BadRequestException({
-        message: 'SKU already exists in DB',
-      });
+      throw new BadRequestException('SKU already exists in DB');
     }
-
     return await this.productRepository.save(newProduct);
   }
 
@@ -31,6 +28,14 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
+    const existingProduct = await this.productRepository.findOne({
+      sku: updateProductDto.sku,
+    });
+
+    if (existingProduct && existingProduct.id != id) {
+      throw new BadRequestException('SKU already exists in DB');
+    }
+
     return this.productRepository.update(id, updateProductDto);
   }
 

@@ -21,20 +21,21 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @Column({
     type: 'enum',
     enum: ProductCategory,
+    nullable: false,
     default: ProductCategory.EMPTY,
   })
   category: ProductCategory;
 
-  @Column()
+  @Column({ nullable: false })
   sku: string;
 
-  @Column({ type: 'float' })
+  @Column({ type: 'float', nullable: false })
   price: number;
 
   @Column({ nullable: false })

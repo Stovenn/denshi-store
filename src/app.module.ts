@@ -15,7 +15,7 @@ import { User } from './users/entities/user.entity';
       type: 'postgres',
       url: process.env.DB_URL,
       entities: [User, Product],
-      synchronize: true, //remove in production
+      synchronize: true,
     }),
     ProductsModule,
     UsersModule,
